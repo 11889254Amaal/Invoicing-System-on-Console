@@ -1,28 +1,41 @@
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-	static void ApplicationMainMenuChoicesFunction() {
 
-		System.out.println("******************************************************");
-		System.out.println("   Invoicing system for a groceries shop Main Menu    ");
-		System.out.println("******************************************************");
-		System.out.println("Welcome...Please Select one of the following options:");
-		System.out.println("1.Shop Settings");
-		System.out.println("2.Manage Shop Items");
-		System.out.println("3.Create New Invoice");
-		System.out.println("4.Report: Statistics (No Of Items, No of Invoices, Total Sales) " );
-		System.out.println("5.Report: All Invoices ( Invoice No, Invoice Date, Customer Name, No of items, Total, Balance) ");
-		System.out.println("6.Search Invoice by Invoicke number");
-		System.out.println("7.Program Statistics (Print each Main Menu Item with how many number selected).");
-		System.out.println("8.Exit");
-		System.out.println("******************************************************");
+
+	
+	public static List<String> getMenuArray(){
+		return Arrays.asList("1.Shop Settings",
+				"2.Manage Shop Items",
+				"3.Create New Invoice",
+				"4.Report: Statistics (No Of Items, No of Invoices, Total Sales) ",
+				"5.Report: All Invoices ( Invoice No, Invoice Date, Customer Name, No of items, Total, Balance) ",
+				"6.Search Invoice by Invoicke number",
+				"7.Program Statistics (Print each Main Menu Item with how many number selected).",
+				"8.Exit"
+				
+				);
+		
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		// this statment to load function (ApplicationMainMenuChoicesFunction())
-		ApplicationMainMenuChoicesFunction();
+		//ApplicationMainMenuChoicesFunction();
+		  System.out.println("******************************************************");
+		  System.out.println("   Invoicing system for a groceries shop Main Menu    ");
+		  System.out.println("******************************************************");
+		  System.out.println("Welcome...Please Select one of the following options:");
+		for(String x:Main.getMenuArray())
+		{
+			
+		
+			  System.out.println(x);
+		}
 
 		do {
 			// user inter which case you want
@@ -36,10 +49,33 @@ public class Main {
 				// Go Back
 				System.out.println("==========WELCOME TO SHOPPING SEETING===================");
 				ShopSettings ShopSettingsClass = new ShopSettings();
-				ShopSettingsClass.ShopSettingsMenu();
+				ShopSettingsClass.SettingsMenu();
 				System.out.println("========================================================");
-				ApplicationMainMenuChoicesFunction();
+				for(String x:Main.getMenuArray())
+				{
+					System.out.println(x);
+				}
+
 				break;
+			case 2:
+				System.out.println("==========Manage Shop Items===================");
+				ManageShopItems ManageShopItemsClass = new ManageShopItems();
+				ManageShopItems.SettingsubMenuManageShopItems();
+				System.out.println("==============================================");
+				for(String x:Main.getMenuArray())
+				{
+					System.out.println(x);
+				}
+			case 3:
+				System.out.println("==========Manage Shop Items===================");
+				ManageShopItems ManageShopItemsClass1 = new ManageShopItems();
+				ManageShopItems.SettingsubMenuManageShopItems();
+				System.out.println("==============================================");
+				for(String x:Main.getMenuArray())
+				{
+					System.out.println(x);
+				}
+			
 			}
 		} while (true);
 	}
