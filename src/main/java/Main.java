@@ -70,6 +70,7 @@ public class Main {
 				System.out.println("==========Create New Invoice===================");
 		    	CreateInvoice CreateInvoiceClass = new CreateInvoice();
 				CreateInvoiceClass.CreateTableInvoiceFunction();
+				CreateInvoiceClass.ADDInvoices();
 				System.out.println("==============================================");
 				for(String x:Main.getMenuArray())
 				{
