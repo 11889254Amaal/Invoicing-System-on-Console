@@ -117,6 +117,11 @@ public class ShopSettings {
 			
 			case 1:
 				//this case to load all data of items and Invoices
+				System.out.println("==========lOAD DATA OF Items===================");
+				LoadDataOfItemsAndInvoices LoadDataOfItems = new LoadDataOfItemsAndInvoices();
+				LoadDataOfItems.LoadDtatOfItems();
+				System.out.println("==============================================");
+				ShopSettingsMenu();
 				break;
 			
 			case 2:

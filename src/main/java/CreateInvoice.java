@@ -11,14 +11,16 @@ public class CreateInvoice {
 		try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 		        Statement stmt = conn.createStatement();
 		     ) {      
-			String sql = "CREATE TABLE Invoice " + "(Invoice_ID INTEGER not NULL, "
+			String sql = "CREATE TABLE Invoice " + "(Invoice_ID int NOT NULL AUTO_INCREMENT, "
 				    + "customer_name  VARCHAR(100) not NULL  ,"
 				    + "InvoiceItems_id  INTEGER  ,"
 					+ "FOREIGN KEY (InvoiceItems_id ) REFERENCES Items(item_ID) ON DELETE CASCADE ,"
 					+ "phone_number  Text  ," 
+					+ "no_of_items  int  ," 
 					+ " invoice_date Date , "  
 					+ " total_amount float , " 
 					+ " paid_amount float , " 
+					+ " balance float , " 
 					+ " PRIMARY KEY ( Invoice_ID ))";
 		         String sql1="ALTER TABLE Invoice AUTO_INCREMENT=1";
 		         stmt.executeUpdate(sql);
@@ -29,9 +31,11 @@ public class CreateInvoice {
 		        System.out.println("=====Table Invoice Created Succeflly====");  
 		       
 		     } catch (SQLException e) {
-		       System.out.println("Table Items Not Created ");
+		       System.out.println("Table Invoice Not Created ");
 		       System.out.println("=======================================");
 		     }
 		return false;
 		  }
+	
+	
 }

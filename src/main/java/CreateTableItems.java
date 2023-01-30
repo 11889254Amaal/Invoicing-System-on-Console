@@ -11,7 +11,7 @@ public class CreateTableItems {
 		try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 		        Statement stmt = conn.createStatement();
 		     ) {      
-			String sql = "CREATE TABLE Items " + "(item_ID INTEGER not NULL, "
+			String sql = "CREATE TABLE Items " + "(item_ID int NOT NULL AUTO_INCREMENT, "
 				    + "item_name  VARCHAR(100) not NULL  ,"
 				    + "shopDetails_id  INTEGER  ,"
 					+ "FOREIGN KEY (shopDetails_id) REFERENCES ShopDetails(id) ON DELETE CASCADE ,"

@@ -67,15 +67,36 @@ public class Main {
 					System.out.println(x);
 				}
 			case 3:
-				System.out.println("==========Manage Shop Items===================");
-				ManageShopItems ManageShopItemsClass1 = new ManageShopItems();
-				ManageShopItems.SettingsubMenuManageShopItems();
+				System.out.println("==========Create New Invoice===================");
+		    	CreateInvoice CreateInvoiceClass = new CreateInvoice();
+				CreateInvoiceClass.CreateTableInvoiceFunction();
 				System.out.println("==============================================");
 				for(String x:Main.getMenuArray())
 				{
 					System.out.println(x);
 				}
-			
+			  break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			case 8:
+				System.out.println("Are You Want To existe from system if yes press 1 IF NOT press 0");
+				int Existe_from_system = sc.nextInt();
+				if (Existe_from_system == 1) {
+					System.out.println("System is exsite");
+					System.exit(0);
+				} else if (Existe_from_system == 0) {
+					for(String x:Main.getMenuArray())
+					{
+						System.out.println(x);
+					}
+				}
+				break;
 			}
 		} while (true);
 	}
