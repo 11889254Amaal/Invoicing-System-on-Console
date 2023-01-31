@@ -64,7 +64,7 @@ public class CreateInvoice {
 		System.out.println("plz enter id of invoice that want to search");
 		Scanner sc1 = new Scanner(System.in); // System.in is a standard input stream
 		String id_of_invoice = sc1.next();
-		String sql = " SELECT * from invoice where Invoice_ID='"+id_of_invoice + "'";
+		String sql = " Select * from invoice INNER JOIN items ON items.item_ID = invoice.InvoiceItems_id  where invoice.Invoice_ID='"+id_of_invoice + "'";
 		
 		Connection con = null;
 
