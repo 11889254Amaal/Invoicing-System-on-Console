@@ -78,10 +78,34 @@ public class Main {
 				}
 			  break;
 			case 4:
+				System.out.println("===Report of Invoice(NO ITEMS/NO INFOICE/TOTAL)==");
+		    	CreateInvoice ReportClass = new CreateInvoice();
+		    	ReportClass.REPORT();
+				System.out.println("=================================================");
+				for(String x:Main.getMenuArray())
+				{
+					System.out.println(x);
+				}
 				break;
 			case 5:
+				System.out.println("==========Report all Invoice===================");
+		    	CreateInvoice ReportInvoiceClass = new CreateInvoice();
+		    	ReportInvoiceClass.ReportAllInvoices();
+				System.out.println("==============================================");
+				for(String x:Main.getMenuArray())
+				{
+					System.out.println(x);
+				}
 				break;
 			case 6:
+				System.out.println("==========Search Invoice by id===================");
+		    	CreateInvoice SearchInvoiceClass = new CreateInvoice();
+		    	SearchInvoiceClass.SearchInvoicesById();
+				System.out.println("==============================================");
+				for(String x:Main.getMenuArray())
+				{
+					System.out.println(x);
+				}
 				break;
 			case 7:
 				break;

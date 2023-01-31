@@ -121,6 +121,10 @@ public class ShopSettings {
 				LoadDataOfItemsAndInvoices LoadDataOfItems = new LoadDataOfItemsAndInvoices();
 				LoadDataOfItems.LoadDtatOfItems();
 				System.out.println("==============================================");
+				System.out.println("==========lOAD DATA OF Invoices===================");
+				LoadDataOfItemsAndInvoices LoadDataOfInvoicesClass = new LoadDataOfItemsAndInvoices();
+				LoadDataOfInvoicesClass.LoadDtatOfInvoices();
+				System.out.println("==============================================");
 				ShopSettingsMenu();
 				break;
 			

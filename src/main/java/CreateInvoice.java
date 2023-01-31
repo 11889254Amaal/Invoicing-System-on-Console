@@ -11,10 +11,127 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import com.mysql.cj.jdbc.Driver;
+
 public class CreateInvoice {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/shopSystem";
 	static final String USER = "root";
 	static final String PASS = "root";
+	public static void REPORT() throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String url = "jdbc:mysql://localhost:3306/shopSystem";
+		String username = "root";
+		String password = "root";
+		Connection con = DriverManager.getConnection(url, username, password);
+		if (con != null) {
+			
+		//prepared statment to get all number of items from invoices
+		String SqlNoOfItems = "SELECT SUM(no_of_items) from invoice";
+		PreparedStatement NoOfITEMSPreparedStatment = con.prepareStatement(SqlNoOfItems);
+		int No_of_items = 0;
+		ResultSet NoOfItemsResultSet = NoOfITEMSPreparedStatment.executeQuery();
+		if (NoOfItemsResultSet.next()) {
+			No_of_items = NoOfItemsResultSet.getInt(1);
+			System.out.println("NO of ITEMS   "+No_of_items);
+		}
+		
+		//prepared statment to get all number of Invoices from invoices
+		String SqlNoOfInvoices = "SELECT COUNT(*) FROM invoice";
+		PreparedStatement NoOfInvoicesPreparedStatment = con.prepareStatement(SqlNoOfInvoices);
+		int No_of_Invoices = 0;
+		ResultSet NoOfInvoicesResultSet = NoOfInvoicesPreparedStatment.executeQuery();
+		if (NoOfInvoicesResultSet.next()) {
+			No_of_Invoices = NoOfInvoicesResultSet.getInt(1);
+			System.out.println("NO of Invoices  "+No_of_Invoices);
+		}
+		
+		//prepared statment to get all Total from invoices
+				String SqlTotalOfInvoices = "SELECT SUM(total_amount) FROM invoice";
+				PreparedStatement TotalOfInvoicesPreparedStatment = con.prepareStatement(SqlTotalOfInvoices);
+				int Total_of_Invoices = 0;
+				ResultSet TotalOfInvoicesResultSet = TotalOfInvoicesPreparedStatment.executeQuery();
+				if (TotalOfInvoicesResultSet.next()) {
+					Total_of_Invoices = TotalOfInvoicesResultSet.getInt(1);
+					System.out.println("Total  "+Total_of_Invoices);
+				}
+		}
+	}
+	
+	public static void SearchInvoicesById() {
+		String url = "jdbc:mysql://localhost:3306/shopSystem";
+		String username = "root";
+		String password = "root";
+		System.out.println("plz enter id of invoice that want to search");
+		Scanner sc1 = new Scanner(System.in); // System.in is a standard input stream
+		String id_of_invoice = sc1.next();
+		String sql = " SELECT * from invoice where Invoice_ID='"+id_of_invoice + "'";
+		
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			// Registering drivers
+			DriverManager.registerDriver(driver);
+			// Reference to connection interface
+			con = DriverManager.getConnection(url, username, password);
+			Statement st = con.createStatement();
+			// Executing query
+
+			
+			ResultSet n = st.executeQuery(sql);
+			while (n.next()) {
+				System.out.println("==================================");
+				System.out.println(" Invoice_number:" + n.getInt(1));
+			    System.out.println(" invoice date:" + n.getString(6));
+			    System.out.println(" Customer Name:" + n.getString(2));
+			    System.out.println(" no of items:" + n.getInt(5));
+			    System.out.println(" total amount:" + n.getInt(7));
+			    System.out.println(" Balance:" + n.getInt(9));
+			    System.out.println("==================================");
+			   
+			}
+			
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
+	
+	public static void ReportAllInvoices() {
+		String url = "jdbc:mysql://localhost:3306/shopSystem";
+		String username = "root";
+		String password = "root";
+		String sql = "SELECT * from invoice";
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			// Registering drivers
+			DriverManager.registerDriver(driver);
+			// Reference to connection interface
+			con = DriverManager.getConnection(url, username, password);
+			Statement st = con.createStatement();
+			// Executing query
+
+			
+			ResultSet n = st.executeQuery(sql);
+			while (n.next()) {
+				System.out.println("==================================");
+				System.out.println(" Invoice_number:" + n.getInt(1));
+			    System.out.println(" invoice date:" + n.getString(6));
+			    System.out.println(" Customer Name:" + n.getString(2));
+			    System.out.println(" no of items:" + n.getInt(5));
+			    System.out.println(" total amount:" + n.getInt(7));
+			    System.out.println(" Balance:" + n.getInt(9));
+			    System.out.println("==================================");
+			   
+			}
+			
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
 
 	public boolean CreateTableInvoiceFunction() {
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -39,10 +156,7 @@ public class CreateInvoice {
 	}
 
 	public static void ADDInvoices() throws SQLException, ClassNotFoundException {
-		List<String> ProductName = new ArrayList<String>();
-		List<Integer> ProductPrice = new ArrayList<Integer>();
-		List<Integer> ProductQty = new ArrayList<Integer>();
-		Integer total = 0;
+	
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/shopSystem";
 		String username = "root";
@@ -177,7 +291,7 @@ public class CreateInvoice {
                 stmt.setDouble(6, totaleAmountcount);
                 stmt.setDouble(7, paidAmountcount);
                 stmt.setInt(8, countBalance);
-                 stmt.executeQuery();
+                 stmt.executeUpdate();
                     System.out.println("Inserted Successfuly");
                 
 			}
